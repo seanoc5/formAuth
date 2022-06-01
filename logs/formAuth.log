@@ -1,0 +1,29 @@
+[18:26  INFO]  Get token (982bbb48d3cf6b19e4f372a6cc6ff904) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:29  INFO]  Get token (51ee96beec883508037bd15e46019a6b) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:32  INFO]  more....? 
+[18:33  INFO]  Get token (586203b2826865d286f9b95a610fc87e) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:33  INFO]  Success? [<h1>XSRF Challenge</h1>] 
+[18:34  INFO]  Get token (c038d222767d3dbfcf826e132d23c44f) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:34  INFO]  Success? [<h1>XSRF Challenge</h1>] 
+[18:36  INFO]  Get token (192fabe4816d86cf6583cab54841b8d9) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:36  INFO]  Success? [<h1>XSRF Challenge</h1>] 
+[18:36  INFO]  Get token (7fac9ad721c0b79ebda3eb73825a0ae7) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:36  INFO]  Success? [<h1>XSRF Challenge</h1>] 
+[18:41  INFO]  Get token (b221287c6e7098aa1b523635c654e985) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:41  INFO]  Success? [<h1>XSRF Challenge</h1>] 
+[18:41  INFO]  Page 1: h2 elements: <h2>Viewing Coverage Page #1</h2> 
+[18:46  INFO]  Get token (26cc6cd39e45f165932954d13e1572fe) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:56  INFO]  Get token (6f1cc79bc8b4b8cf6bf38be82e3a1254) from url: https://authenticationtest.com/xsrfChallenge/ 
+[18:57  INFO]  Success (<h1>Login Success</h1>)? [<h1>XSRF Challenge</h1>] 
+[18:57  INFO]  Page 1: h2 elements: <h2>Viewing Coverage Page #1</h2> 
+[18:57  INFO]  more....? 
+[19:26  INFO]  Get token (0eb2e0be83316717796fec45231ba12a) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:26  INFO]  Get token (d12d70f078fda152ed75d8f2c5e553e5) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:45  INFO]  Get token (19c6be92512c36e412de5fd4ed50d013) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:45  INFO]  Get token (831aafbc40de54a69c20a8359619dec1) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:56  INFO]  Get token (96ab553cba38bdbb5ebc41508f0e5aa5) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:57  INFO]  Get token (3c111f554e6070b0f557120edbe3854a) from url: https://authenticationtest.com/xsrfChallenge/ 
+[19:58  INFO]  Get token (04c0feeae7ece295144707b958b678b3) from url: https://authenticationtest.com/xsrfChallenge/ 
+[20:00  INFO]  Get token (da8ce6f821846cda713a717cecb11ce6) from url: https://authenticationtest.com/xsrfChallenge/ 
+[20:01  INFO]  Get token (cec753d9c4f5bc478ef12e4c16257ae3) from url: https://authenticationtest.com/xsrfChallenge/ 
+[20:03  INFO]  Success (<h1>Login Success</h1>)? [<h1>XSRF Challenge</h1>] 

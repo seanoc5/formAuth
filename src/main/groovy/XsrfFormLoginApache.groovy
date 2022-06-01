@@ -1,12 +1,8 @@
-//import org.apache.hc.client5.http.entity.UrlEncodedFormEntity
-//import org.apache.hc.core5.http.NameValuePair
-//import org.apache.hc.core5.http.message.BasicNameValuePair
 import org.apache.http.HttpEntity
 import org.apache.http.NameValuePair
 import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.client.methods.HttpPost
-import org.apache.http.impl.client.BasicCookieStore
 import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.message.BasicNameValuePair
@@ -18,7 +14,7 @@ import org.jsoup.nodes.Document
 Logger log = Logger.getLogger(this.class.name);
 
 String urlToken = "https://authenticationtest.com/xsrfChallenge/"
-def cookieStore = new BasicCookieStore();
+//def cookieStore = new BasicCookieStore();
 
 
 CloseableHttpClient client = HttpClients.createDefault()

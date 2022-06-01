@@ -1,8 +1,15 @@
+//import org.apache.hc.client5.http.entity.UrlEncodedFormEntity
+//import org.apache.hc.core5.http.NameValuePair
+//import org.apache.hc.core5.http.message.BasicNameValuePair
 import org.apache.http.HttpEntity
+import org.apache.http.NameValuePair
+import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpGet
-import org.apache.http.client.methods.RequestBuilder
+import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.BasicCookieStore
+import org.apache.http.impl.client.CloseableHttpClient
 import org.apache.http.impl.client.HttpClients
+import org.apache.http.message.BasicNameValuePair
 import org.apache.http.util.EntityUtils
 import org.apache.log4j.Logger
 import org.jsoup.Jsoup
@@ -10,58 +17,57 @@ import org.jsoup.nodes.Document
 
 Logger log = Logger.getLogger(this.class.name);
 
-String urlLogin = "https://authenticationtest.com/xsrfChallenge/"
-def  cookieStore = new BasicCookieStore();
+String urlToken = "https://authenticationtest.com/xsrfChallenge/"
+def cookieStore = new BasicCookieStore();
 
-def clientbuilder = HttpClients.custom();
-def   clientbuilder1 = clientbuilder
-    .setDefaultCookieStore(cookieStore)
-//    .setUserAgent(USER_AGENT);
 
-def client = clientbuilder1.build()
+CloseableHttpClient client = HttpClients.createDefault()
+String page1Url = 'https://authenticationtest.com/coverage/?id=1'
+HttpGet httpgetPage1 = new HttpGet(page1Url);
+def page1Response = client.execute(httpgetPage1)
+HttpEntity page1Entity = page1Response.getEntity();
+String page1Html = EntityUtils.toString(page1Entity)
+Document page1Doc = Jsoup.parse(page1Html)
+def em = page1Doc.select("em").first()
+log.info "Em tag?? ($em) from url: $urlToken  (should have pro tip: not logged in (yet))"
 
-HttpGet httpget = new HttpGet(urlLogin);
-def response = client.execute(httpget)
-HttpEntity tokenEntity = response.getEntity();
+HttpGet httpgetToken = new HttpGet(urlToken);
+def tokenResponse = client.execute(httpgetToken)
+HttpEntity tokenEntity = tokenResponse.getEntity();
 String htmlToken = EntityUtils.toString(tokenEntity)
 Document tokenDoc = Jsoup.parse(htmlToken)
 def token = tokenDoc.select("#xsrfToken").first().attr('value')
-log.info "Get token ($token) from url: $urlLogin"
+log.info "Get token ($token) from url: $urlToken"
 
 
 //def reqbuilderLogin = RequestBuilder.post()
+String urlLogin = 'https://authenticationtest.com//login/?mode=xsrfChallenge'
+HttpPost loginPost = new HttpPost(urlLogin)
 
-def reqbuilder = RequestBuilder.post()
-def loginPost = reqbuilder
-        .setUri(urlLogin)
-        .addParameter("action", "login")
-        .addParameter('email', "xsrf@authenticationtest.com")
-        .addParameter('password', 'pa$$w0rd')
-        .addParameter('xsrfToken', token)
-        .build();
+List<NameValuePair> args = [
+//        new BasicNameValuePair('action', 'login'),
+new BasicNameValuePair('email', 'xsrf@authenticationtest.com'),
+new BasicNameValuePair('password', 'pa$$w0rd'),
+new BasicNameValuePair('xsrfToken', token),
+]
+org.apache.http.HttpEntity entity = new UrlEncodedFormEntity(args)
+
+log.info "Encoded params: $entity"
+loginPost.setEntity(entity)
+def responseLogin = client.execute(loginPost)
+def entityLogin = responseLogin.getEntity()
+
+String htmlLogin = EntityUtils.toString(entityLogin)
+log.info "Login request: $loginPost"
+
+page1Response = client.execute(httpgetPage1)
+page1Entity = page1Response.getEntity();
+page1Html = EntityUtils.toString(page1Entity)
+page1Doc = Jsoup.parse(page1Html)
+em = page1Doc.select("em").first()
+log.info "Em tag?? ($em) from url: $urlToken  (should have:A deep dive into the technical requirements ...)"
 
 
-def httpResponse = client.execute(loginPost);
-def loginEntity = httpResponse.getEntity()
-String loginHtml = EntityUtils.toString(loginEntity)
-Document successDoc = Jsoup.parse(loginHtml)
-def h1Success = successDoc.select('h1')
-log.info "Success (<h1>Login Success</h1>)? $h1Success"
-log.info "Html:\n$loginHtml"
 
+log.info "more....?"
 
-//String page1Url = 'https://authenticationtest.com/coverage/?id=1'
-//HttpGet page1 = new HttpGet(page1Url);
-//def page1Response = httpClient.execute(page1)
-//HttpEntity page1Entity = page1Response.getEntity();
-//String page1Html = EntityUtils.toString(page1Entity)
-//Document page1Doc = Jsoup.parse(page1Html)
-//def h2 = page1Doc.select('h2')
-//def em = page1Doc.select('em')
-//log.info "Page 1: h2 elements: <h2>Viewing Coverage Page #1</h2>"
-//
-//
-//log.debug "Html login results: $loginHtml"
-//
-//log.info "more....?"
-//
